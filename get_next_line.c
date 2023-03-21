@@ -69,6 +69,28 @@ char *ft_strjoin(char *s1, char *s2)
   return (tmp);
 }
 
+char *get_line(char *str)
+{
+  char  *tmp;
+  int   i;
+
+  if (!(tmp = (char *)malloc(sizeof(char) * ft_strlen(str) + 1)))
+        return (NULL);
+  i = 0;
+  while (str[i] != 0 && str[i] != '\n')
+  {
+    tmp[i] = str[i];
+    i++;
+  }
+  if (str[i] == '\n')
+  {  
+    tmp[i] = str[i];
+    i++;  
+  }
+  tmp[i] = '\0';
+  return (tmp);
+}
+
 char *read_line (char *str, int fd)
 {
   char *tmp;
@@ -96,6 +118,7 @@ char *get_next_line(int fd)
   if (fd < 0|| BUFFER_SIZE < 1)
       return (NULL);
   str = read_line(str, fd);
+  line = get_line (str);
   return (str);
 }
 
@@ -104,8 +127,8 @@ int main(void)
   char *line;
 
   line = get_next_line (0);
-  printf ("%s", line);
-  printf ("%s", line);
+  printf ("[%s]", line);
+  printf ("[%s]", line);
   if (line)
     free (line);
 }
