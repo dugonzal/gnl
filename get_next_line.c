@@ -11,6 +11,8 @@
 int ft_strchr(char *str)
 {
   int i = 0;
+  if (!str)
+      return (0);
   while (str[i])
   {
     if (str[i] == '\n')
@@ -59,6 +61,7 @@ char *ft_strjoin(char *s1, char *s2)
   while (s2[j])
     tmp[i++] = s2[j++];
   tmp[i] = '\0';
+  free ((void *)s1);
   return (tmp);
 }
 
@@ -67,8 +70,6 @@ char *read_line (char *str, int fd)
   char *tmp;
   int rd;
 
-  if (!(tmp = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1)))
-    return (NULL);
   rd = 1;
   while (rd > 0 && !ft_strchr(tmp))
   {
@@ -100,8 +101,8 @@ int main(void)
 
   line = get_next_line (0);
   printf ("[%s]", line);
+  printf ("[%s]", line);
   if (line)
     free (line);
-  printf ("[%s]", line);
 }
 
