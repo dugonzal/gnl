@@ -10,9 +10,11 @@
 
 int ft_strchr(char *str)
 {
-  int i = 0;
+  int i;
+
   if (!str)
       return (0);
+  i = 0;
   while (str[i])
   {
     if (str[i] == '\n')
@@ -24,9 +26,11 @@ int ft_strchr(char *str)
 
 int ft_strlen(char *str)
 {
-  int i = 0;
+  int i;
+
   if (!str)
     return (0);
+  i = 0;
   while (str[i])
     i++;
   return (i);
@@ -80,7 +84,7 @@ char *read_line (char *str, int fd)
       tmp[rd] = '\0';
       str = ft_strjoin(str, tmp);
   }
-  free (tmp);
+  free ((void *)tmp);
   return (str);
 }
 
@@ -100,8 +104,8 @@ int main(void)
   char *line;
 
   line = get_next_line (0);
-  printf ("[%s]", line);
-  printf ("[%s]", line);
+  printf ("%s", line);
+  printf ("%s", line);
   if (line)
     free (line);
 }
