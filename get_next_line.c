@@ -69,7 +69,7 @@ char *read_line(char *str, int fd)
       free (tmp);
       return (NULL);
     }
-    tmp[rd] = '\0';
+    tmp[ft_strlen(tmp) + 1] = '\0';
     str = ft_strjoin(str, tmp);
   }
   free (tmp);
@@ -144,12 +144,9 @@ int main(void)
 {
   char *line;
 
- while (((line = get_next_line (0))))
- {
+ while (((line = get_next_line (0)))){
     printf ("\n[%s]", line);
-
     free (line);
-    line = NULL; 
  }
     printf ("[%s]", line);
 }
@@ -163,7 +160,8 @@ int main(void)
 
 ❯ valgrind ./a.out
 
-[(null)]==48728== 
+[(null)]
+==48728== 
 ==48728== HEAP SUMMARY:
 ==48728==     in use at exit: 7,636 bytes in 121 blocks
 ==48728==   total heap usage: 7,878 allocs, 7,757 frees, 875,972 bytes allocated
