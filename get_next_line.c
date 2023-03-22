@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 #ifndef BUFFER_SIZE
-#define BUFFER_SIZE 200
+#define BUFFER_SIZE 200 + 150 - 349
 #endif
 
 int find(char *str)
@@ -39,7 +39,7 @@ char *ft_strjoin (char *s1, char *s2)
   if (!tmp)
     return (NULL);
   i = 0;
-  if (s1)
+  if (s1)  
     while (s1[i])
     {
       tmp[i] = s1[i];
@@ -62,8 +62,7 @@ char *read_line(char *str, int fd)
   if (!tmp)
     return (NULL);
   rd = 1;
-  while (rd != 0)
-    while (rd = read (fd, tmp, BUFFER_SIZE) && !find (tmp)) {
+    while (rd != 0 && !find (tmp)) {
       rd = read (fd, tmp, BUFFER_SIZE);
     if (rd == -1) // error en lectura
     {
@@ -147,10 +146,34 @@ int main(void)
 
  while (((line = get_next_line (0))))
  {
-    printf ("[%s]", line);
+    printf ("\n[%s]", line);
+
     free (line);
     line = NULL; 
  }
     printf ("[%s]", line);
 }
+/*
+❯ ls
+ a.out   a.txt   get_next_line.c   hola   studleak   test
 
+~/Documentos/42/42_School_Exam_Rank_02/0/core/exam/my_42_exam/0000/42-EXAM/rendu/get_next_line master*                                                                                           11:41:07
+❯ ls
+ a.out   a.txt   get_next_line.c   hola   studleak   test
+❯ valgrind ./a.out
+==34342== Memcheck, a memory error detector
+==34342== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==34342== Using Valgrind-3.20.0 and LibVEX; rerun with -h for copyright info
+==34342== Command: ./a.out
+==34342== 
+fjksdafjkdsbfjkdsbfds
+[(null)]==34342== 
+==34342== HEAP SUMMARY:
+==34342==     in use at exit: 0 bytes in 0 blocks
+==34342==   total heap usage: 2 allocs, 2 frees, 1,225 bytes allocated
+==34342== 
+==34342== All heap blocks were freed -- no leaks are possible
+==34342== 
+==34342== For lists of detected and suppressed errors, rerun with: -s
+==34342==
+*/
