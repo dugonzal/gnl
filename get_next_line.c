@@ -63,7 +63,7 @@ char *read_line(char *str, int fd)
     return (NULL);
   rd = 1;
     while (rd != 0 && !find (tmp)) {
-      rd = read (fd, tmp, BUFFER_SIZE);
+           rd = read (fd, tmp, BUFFER_SIZE);
     if (rd == -1) // error en lectura
     {
       free (tmp);
