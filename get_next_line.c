@@ -62,8 +62,9 @@ char *read_line(char *str, int fd)
   if (!tmp)
     return (NULL);
   rd = 1;
-  while (rd != 0 && !find (tmp)) {
-    rd = read (fd, tmp, BUFFER_SIZE);
+  while (rd != 0)
+    while (rd = read (fd, tmp, BUFFER_SIZE) && !find (tmp)) {
+      rd = read (fd, tmp, BUFFER_SIZE);
     if (rd == -1) // error en lectura
     {
       free (tmp);
@@ -94,10 +95,10 @@ char *get_line (char *str)
     tmp[i] = str[i];
     i++;
   }
-  if (str[i] == '\n'){
+  if (str[i] == '\n')
+  {
      tmp[i] = '\n';
-    tmp[i + 1] = '\0';
-    return (tmp);
+    i++;
   }
   tmp[i] = '\0';
   return (tmp);
@@ -117,13 +118,9 @@ char *next_line(char *str)
   tmp = (char *)malloc(sizeof(char) * ft_strlen(str) - i + 2);
   if (!tmp)
     return (NULL);
-  i++;
   j = 0;
-  while (str[i] != 0){
-    tmp[j] = str[i];
-    j++;
-    i++;
-  }
+  while (str[i] != 0)
+    tmp[j++] = str[++i];
   tmp[j] = '\0';
   return (tmp);
 }
