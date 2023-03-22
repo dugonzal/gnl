@@ -6,11 +6,11 @@
 #define BUFFER_SIZE 200 + 150 - 349
 #endif
 
-int find(char *str)
+int find(char *str, int c)
 {
   int i = 0;
   while (str[i]){
-    if (str[i] == '\n')
+    if (str[i] == (char)c)
       return (1);
     i++;
   }
@@ -40,13 +40,12 @@ char *ft_strjoin (char *s1, char *s2)
     return (NULL);
   i = 0;
   if (s1)  
-    while (s1[i])
-    {
-      tmp[i] = s1[i];
-      i++;
-    }
+  while (s1[i]){
+  tmp[i] = s1[i];
+  i++;
+  }
   j = 0;
-  while (s2[j])
+  while (s2[j] != 0)
     tmp[i++] = s2[j++];
   tmp[i] = '\0';
   free (s1);
@@ -62,15 +61,14 @@ char *read_line(char *str, int fd)
   if (!tmp)
     return (NULL);
   rd = 1;
-    while (rd != 0 && !find (tmp)) {
-           rd = read (fd, tmp, BUFFER_SIZE);
-    if (rd == -1) // error en lectura
-    {
-      free (tmp);
-      return (NULL);
-    }
-    tmp[ft_strlen(tmp) + 1] = '\0';
-    str = ft_strjoin(str, tmp);
+  while (rd != 0 && !find (tmp, '\n')) {
+  rd = read (fd, tmp, BUFFER_SIZE);
+  if (rd == -1){ // error <- read -1
+  free (tmp);
+  return (NULL);
+  }
+  tmp[ft_strlen(tmp) + 1] = '\0';
+  str = ft_strjoin(str, tmp);
   }
   free (tmp);
   return (str);
@@ -91,12 +89,11 @@ char *get_line (char *str)
     return (NULL);
   i = 0;
   while (str[i] != 0 && str[i] != '\n'){
-    tmp[i] = str[i];
-    i++;
+  tmp[i] = str[i];
+  i++;
   }
-  if (str[i] == '\n')
-  {
-     tmp[i] = '\n';
+  if (str[i] == '\n'){
+    tmp[i] = '\n';
     i++;
   }
   tmp[i] = '\0';
@@ -145,10 +142,10 @@ int main(void)
   char *line;
 
  while (((line = get_next_line (0)))){
-    printf ("\n[%s]", line);
-    free (line);
+  printf ("\n[%s]", line);
+  free (line);
  }
-    printf ("[%s]", line);
+  printf ("[%s]", line);
 }
 
 
