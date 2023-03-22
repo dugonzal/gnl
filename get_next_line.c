@@ -153,27 +153,49 @@ int main(void)
  }
     printf ("[%s]", line);
 }
-/*
-❯ ls
- a.out   a.txt   get_next_line.c   hola   studleak   test
 
-~/Documentos/42/42_School_Exam_Rank_02/0/core/exam/my_42_exam/0000/42-EXAM/rendu/get_next_line master*                                                                                           11:41:07
-❯ ls
- a.out   a.txt   get_next_line.c   hola   studleak   test
+
+/*
+
+  ❯ ls
+   get_next_line.c   gnl   studleak   test   tester_val.sh
+
+
 ❯ valgrind ./a.out
-==34342== Memcheck, a memory error detector
-==34342== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==34342== Using Valgrind-3.20.0 and LibVEX; rerun with -h for copyright info
-==34342== Command: ./a.out
-==34342== 
-fjksdafjkdsbfjkdsbfds
-[(null)]==34342== 
-==34342== HEAP SUMMARY:
-==34342==     in use at exit: 0 bytes in 0 blocks
-==34342==   total heap usage: 2 allocs, 2 frees, 1,225 bytes allocated
-==34342== 
-==34342== All heap blocks were freed -- no leaks are possible
-==34342== 
-==34342== For lists of detected and suppressed errors, rerun with: -s
-==34342==
+
+[(null)]==48728== 
+==48728== HEAP SUMMARY:
+==48728==     in use at exit: 7,636 bytes in 121 blocks
+==48728==   total heap usage: 7,878 allocs, 7,757 frees, 875,972 bytes allocated
+==48728== 
+==48728== 7,636 bytes in 121 blocks are definitely lost in loss record 1 of 1
+==48728==    at 0x4841888: malloc (vg_replace_malloc.c:393)
+==48728==    by 0x109240: ft_strjoin (in /home/ciclo/Documentos/42/42_School_Exam_Rank_02/0/core/exam/my_42_exam/0000/42-EXAM/rendu/get_next_line/gnl)
+==48728==    by 0x109398: read_line (in /home/ciclo/Documentos/42/42_School_Exam_Rank_02/0/core/exam/my_42_exam/0000/42-EXAM/rendu/get_next_line/gnl)
+==48728==    by 0x109612: get_next_line (in /home/ciclo/Documentos/42/42_School_Exam_Rank_02/0/core/exam/my_42_exam/0000/42-EXAM/rendu/get_next_line/gnl)
+==48728==    by 0x10969E: main (in /home/ciclo/Documentos/42/42_School_Exam_Rank_02/0/core/exam/my_42_exam/0000/42-EXAM/rendu/get_next_line/gnl)
+==48728== 
+==48728== LEAK SUMMARY:
+==48728==    definitely lost: 7,636 bytes in 121 blocks
+==48728==    indirectly lost: 0 bytes in 0 blocks
+==48728==      possibly lost: 0 bytes in 0 blocks
+==48728==    still reachable: 0 bytes in 0 blocks
+==48728==         suppressed: 0 bytes in 0 blocks
+==48728== 
+==48728== ERROR SUMMARY: 122 errors from 2 contexts (suppressed: 0 from 0)
+==48728== 
+==48728== 121 errors in context 1 of 2:
+==48728== Conditional jump or move depends on uninitialised value(s)
+==48728==    at 0x1091AB: find (in /home/ciclo/Documentos/42/42_School_Exam_Rank_02/0/core/exam/my_42_exam/0000/42-EXAM/rendu/get_next_line/gnl)
+==48728==    by 0x1093AF: read_line (in /home/ciclo/Documentos/42/42_School_Exam_Rank_02/0/core/exam/my_42_exam/0000/42-EXAM/rendu/get_next_line/gnl)
+==48728==    by 0x109612: get_next_line (in /home/ciclo/Documentos/42/42_School_Exam_Rank_02/0/core/exam/my_42_exam/0000/42-EXAM/rendu/get_next_line/gnl)
+==48728==    by 0x10969E: main (in /home/ciclo/Documentos/42/42_School_Exam_Rank_02/0/core/exam/my_42_exam/0000/42-EXAM/rendu/get_next_line/gnl)
+==48728==  Uninitialised value was created by a heap allocation
+==48728==    at 0x4841888: malloc (vg_replace_malloc.c:393)
+==48728==    by 0x109324: read_line (in /home/ciclo/Documentos/42/42_School_Exam_Rank_02/0/core/exam/my_42_exam/0000/42-EXAM/rendu/get_next_line/gnl)
+==48728==    by 0x109612: get_next_line (in /home/ciclo/Documentos/42/42_School_Exam_Rank_02/0/core/exam/my_42_exam/0000/42-EXAM/rendu/get_next_line/gnl)
+==48728==    by 0x10969E: main (in /home/ciclo/Documentos/42/42_School_Exam_Rank_02/0/core/exam/my_42_exam/0000/42-EXAM/rendu/get_next_line/gnl)
+==48728== 
+==48728== ERROR SUMMARY: 122 errors from 2 contexts (suppressed: 0 from 0)
+
 */
